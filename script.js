@@ -58,15 +58,10 @@ const interval = setInterval(() => {
   }
 }, 1000);
 
-// const swiper = new Swiper(".progress-slide-carousel", {
-//   loop: true,
-//   fraction: true,
-//   autoplay: {
-//     delay: 5000,
-//     disableOnInteraction: false,
-//   },
-//   pagination: {
-//     el: ".progress-slide-carousel .swiper-pagination",
-//     type: "progressbar",
-//   },
-// });
+function timerEnded () {
+  const background = document.getElementById("bg"),
+    confetti = document.createElement("confetti-element");
+
+  confetti.setAttribute("src", "components/confetti/confetti-element.html");
+  background.prepend(confetti);
+}

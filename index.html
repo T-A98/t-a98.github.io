@@ -12,11 +12,11 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <div
-      id="bg"
-      class="h-screen"
-    >
-      <div class="w-full h-full flex gap-9 flex-col items-center justify-center bg-cover bg-center">
+    <div id="bg" class="h-screen">
+      <button onclick="timerEnded()">t</button>
+      <div
+        class="w-full h-full flex gap-9 flex-col items-center justify-center bg-cover bg-center"
+      >
         <div
           id="timerContainer"
           class="backdrop-blur-sm rounded-2xl text-center"
@@ -111,4 +111,5 @@
   </body>
   <script src="https://cdn.jsdelivr.net/npm/pagedone@3.0.0/src/js/pagedone.js"></script>
   <script src="script.js"></script>
+  <script src="components/confetti/confetti-element.js" defer></script>
 </html>
