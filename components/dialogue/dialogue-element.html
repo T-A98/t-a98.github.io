@@ -21,7 +21,7 @@
         class="navBtn py-2.5 px-6 text-sm rounded-2xl bg-gradient-to-r from-violet-600 to-pink-500 text-white cursor-pointer font-semibold text-center shadow-xs hover:bg-gradient-to-tr"
         onclick="this.getRootNode().host.changeText(false)"
       >
-        <span>🢦 &nbsp;Previous</span>
+        <span>< &nbsp;Prev</span>
       </button>
 
       <button
@@ -39,7 +39,7 @@
         class="navBtn py-2.5 px-6 text-sm rounded-2xl bg-gradient-to-r from-violet-600 to-pink-500 text-white cursor-pointer font-semibold text-center shadow-xs hover:bg-gradient-to-tr"
         onclick="this.getRootNode().host.changeText(true)"
       >
-        <span>Next &nbsp;🢧</span>
+        <span>Next &nbsp;></span>
       </button>
     </div>
   </div>
@@ -121,7 +121,7 @@
   .navBtn {
     position: relative;
 
-    width: 140px !important;
+    width: 120px !important;
   }
 
   #dialogueNavBtnContainer {
@@ -138,6 +138,7 @@
     display: none;
     position: fixed;
     z-index: 101;
+    align-content: center;
     /* padding-top: 100px; */
     left: 0;
     top: 0;

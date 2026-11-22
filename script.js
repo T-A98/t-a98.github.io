@@ -1,10 +1,11 @@
-const endDate = new Date("nov 25, 2026 00:00:00");
+const endDate = new Date("nov 22, 2026 21:37:00");
 
 const interval = setInterval(() => {
   const currentDate = new Date(),
     timeLeft = endDate.getTime() - currentDate.getTime(); // in ms
 
   if (timeLeft <= 0) {
+    timerEnded();
     clearInterval(x);
     return;
   }
@@ -80,6 +81,8 @@ function timerEnded() {
     dialogue.setAttribute("src", "components/dialogue/dialogue-element.html");
     dialogue.setAttribute("id", "dialogue");
     // Delay
-    setTimeout(() => {background.prepend(dialogue);}, DIALOGUE_DELAY);
+    setTimeout(() => {
+      background.prepend(dialogue);
+    }, DIALOGUE_DELAY);
   }
 }
