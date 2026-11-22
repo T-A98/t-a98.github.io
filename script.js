@@ -1,4 +1,4 @@
-const endDate = new Date("nov 22, 2026 21:37:00");
+const endDate = new Date("nov 25, 2026 00:00:00");
 
 const interval = setInterval(() => {
   const currentDate = new Date(),
