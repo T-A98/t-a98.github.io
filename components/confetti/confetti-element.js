@@ -1,6 +1,6 @@
 class Confetti extends HTMLElement {
   async connectedCallback() {
-    // Verhindert doppeltes Rendern, falls das Element verschoben wird
+    // Do not render element twice
     if (this._initialized) return;
     this._initialized = true;
 

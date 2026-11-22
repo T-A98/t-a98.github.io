@@ -1,0 +1,191 @@
+<div id="dialogue" class="transition-all duration-500">
+  <link
+    href="https://cdn.jsdelivr.net/npm/pagedone@3.0.0/src/css/pagedone-v2.css "
+    rel="stylesheet"
+  />
+  <div id="image-viewer">
+    <span onclick="this.getRootNode().host.closeViewer()" class="close"
+      >&times;</span
+    >
+    <img class="modal-content" id="full-image" />
+  </div>
+  <div id="dialogueContainer">
+    <div id="dialogueTextContainer">
+      <p id="dialogueTextParagraph" />
+    </div>
+    <!-- <button id="nextBtn" onclick="this.getRootNode().host.nextText()">Next ➡️</button> -->
+    <div id="dialogueNavBtnContainer">
+      <button
+        id="prevBtn"
+        type="button"
+        class="navBtn py-2.5 px-6 text-sm rounded-2xl bg-gradient-to-r from-violet-600 to-pink-500 text-white cursor-pointer font-semibold text-center shadow-xs hover:bg-gradient-to-tr"
+        onclick="this.getRootNode().host.changeText(false)"
+      >
+        <span>🢦 &nbsp;Previous</span>
+      </button>
+
+      <button
+        id="imageBtn"
+        type="button"
+        class="py-2.5 px-6 text-sm rounded-2xl bg-gradient-to-r from-violet-600 to-pink-500 text-white cursor-pointer font-semibold text-center shadow-xs hover:bg-gradient-to-tr"
+        onclick="this.getRootNode().host.openImage()"
+      >
+        <span>🖼️</span>
+      </button>
+
+      <button
+        id="nextBtn"
+        type="button"
+        class="navBtn py-2.5 px-6 text-sm rounded-2xl bg-gradient-to-r from-violet-600 to-pink-500 text-white cursor-pointer font-semibold text-center shadow-xs hover:bg-gradient-to-tr"
+        onclick="this.getRootNode().host.changeText(true)"
+      >
+        <span>Next &nbsp;🢧</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #dialogue {
+  }
+
+  #dialogueTextParagraph {
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    margin: 0;
+    font-family: "Georgia", "Palatino Linotype", "Book Antiqua", serif;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.75;
+    letter-spacing: 0.015em;
+    color: #424242;
+    text-shadow: 0 2px 10px rgba(244, 143, 177, 0.22);
+  }
+
+  #dialogueContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    padding: 10px 20px;
+    width: 30vw;
+    min-height: 320px;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Test */
+    border-radius: 18px;
+    background: linear-gradient(
+      145deg,
+      var(--color-pink-300),
+      var(--color-indigo-300)
+    );
+    border: 1px solid rgba(244, 168, 190, 0.35);
+    box-shadow:
+      0 14px 36px rgba(10, 4, 14, 0.65),
+      0 0 24px rgba(232, 121, 156, 0.14),
+      inset 0 1px 0 rgba(255, 232, 240, 0.14);
+  }
+
+  #dialogueContainer::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 13px;
+    border: 3px dashed rgba(255, 255, 255, 0.279);
+    pointer-events: none;
+  }
+
+  @media (max-width: 1280px) {
+    #dialogueContainer {
+      width: 55vw;
+      font-size: large;
+    }
+  }
+
+  @media (max-width: 576px) {
+    #dialogueContainer {
+      width: 90vw;
+      font-size: large;
+    }
+  }
+
+  #nextBtn {
+    float: right;
+  }
+
+  #prevBtn {
+  }
+
+  .navBtn {
+    position: relative;
+
+    width: 140px !important;
+  }
+
+  #dialogueNavBtnContainer {
+    margin: 20px 0 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  /* Image viewer */
+
+  /* The Modal (background) */
+  #image-viewer {
+    display: none;
+    position: fixed;
+    z-index: 101;
+    /* padding-top: 100px; */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-height: 100vh;
+    max-width: 100vw;
+    object-fit: scale-down;
+  }
+  .modal-content {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  #image-viewer .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  #image-viewer .close:hover,
+  #image-viewer .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 700px) {
+    .modal-content {
+      width: 100%;
+    }
+  }
+</style>

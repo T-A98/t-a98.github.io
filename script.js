@@ -9,26 +9,26 @@ const interval = setInterval(() => {
     return;
   }
 
-  
-    const msInDay = 24 * 60 * 60 * 1000;
+  const msInDay = 24 * 60 * 60 * 1000;
 
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000),
     minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)),
     hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-    // 3. Extract components sequentially from the remainder
-    let months = (endDate.getFullYear() - currentDate.getFullYear()) * 12 + (endDate.getMonth() - currentDate.getMonth()),
-     currentTarget = new Date(currentDate);
-    currentTarget.setMonth(currentTarget.getMonth() + months);
-   
+  // 3. Extract components sequentially from the remainder
+  let months =
+      (endDate.getFullYear() - currentDate.getFullYear()) * 12 +
+      (endDate.getMonth() - currentDate.getMonth()),
+    currentTarget = new Date(currentDate);
+  currentTarget.setMonth(currentTarget.getMonth() + months);
 
-     if (currentTarget > endDate) {
-        months--;
-        currentTarget = new Date(currentDate);
-        currentTarget.setMonth(currentTarget.getMonth() + months);
-    }
-    const diffMs = endDate - currentTarget;
-    days = Math.floor(diffMs / msInDay);
+  if (currentTarget > endDate) {
+    months--;
+    currentTarget = new Date(currentDate);
+    currentTarget.setMonth(currentTarget.getMonth() + months);
+  }
+  const diffMs = endDate - currentTarget;
+  days = Math.floor(diffMs / msInDay);
 
   // Get elements by class name
   let countdownElements = document.getElementsByClassName("countdown-element");
@@ -58,10 +58,28 @@ const interval = setInterval(() => {
   }
 }, 1000);
 
-function timerEnded () {
-  const background = document.getElementById("bg"),
-    confetti = document.createElement("confetti-element");
+function timerEnded() {
+  const CONFETTI_DURATION = 30000,
+    DIALOGUE_DELAY = 0;
 
-  confetti.setAttribute("src", "components/confetti/confetti-element.html");
-  background.prepend(confetti);
+  const background = document.getElementById("bg"),
+    confetti = document.createElement("confetti-element"),
+    dialogue = document.createElement("dialogue-element");
+
+  if (!document.getElementById("confetti")) {
+    confetti.setAttribute("src", "components/confetti/confetti-element.html");
+    confetti.setAttribute("id", "confetti");
+    background.prepend(confetti);
+    // Confetti animation is already stopped by CSS. It should be also removed from the DOM though.
+    // setTimeout(() => {
+    //   confetti.remove();
+    // }, CONFETTI_DURATION);
+  }
+
+  if (!document.getElementById("dialogue")) {
+    dialogue.setAttribute("src", "components/dialogue/dialogue-element.html");
+    dialogue.setAttribute("id", "dialogue");
+    // Delay
+    setTimeout(() => {background.prepend(dialogue);}, DIALOGUE_DELAY);
+  }
 }
