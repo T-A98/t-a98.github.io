@@ -8,6 +8,7 @@ class Dialogue extends HTMLElement {
     this.dialoguePath = "/data/dialogue.json";
     this.imagesPath = "/data/images";
     this.dialogueKey = "main";
+    this.speedMs = 0;
 
     this.isTyping = false;
     this.cancelCurrentTyping = null;
@@ -40,7 +41,7 @@ class Dialogue extends HTMLElement {
   }
 
   changeText(bNext = true) {
-    if (this.isTyping) return;
+    if (this.isTyping) {this.speedMs = 1; return;}
     bNext
       ? this.currentTextIndex <
         this.dialogueJSON[this.dialogueKey]["steps"].length - 1
@@ -105,6 +106,7 @@ class Dialogue extends HTMLElement {
 
   async _typeDialogue(text, speedMs = 30) {
     const dialogueParagraph = this._getDialogueTextParagraph();
+    this.speedMs = speedMs;
 
     if (this.cancelCurrentTyping) {
       skipped = true;
@@ -125,10 +127,10 @@ class Dialogue extends HTMLElement {
       dialogueParagraph.textContent += char;
 
       // Pause for dots, exclamation and question marks
-      let delay = speedMs;
-      if (this._isPauseChar(char)) delay = speedMs * 5;
-      else if (char === ",") delay = speedMs * 3;
-      else if (char === "\n") delay = speedMs * 20;
+      let delay = this.speedMs;
+      if (this._isPauseChar(char)) delay = this.speedMs * 5;
+      else if (char === ",") delay = this.speedMs * 3;
+      else if (char === "\n") delay = this.speedMs * 20;
 
       await this.sleep(delay);
     }
